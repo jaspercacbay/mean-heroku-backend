@@ -39,9 +39,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
 
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://tester1:tester1@ds145981.mongolab.com:45981/heroku-mean-todoapp", { useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://tester1:tester1@ds145981.mlab.com:45981/heroku-mean-todoapp", { useNewUrlParser: true})
 .then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`)})
-.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`)});
+.catch((err)=> { 
+  console.log(err);
+  console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`)});
 
 
 var app = express();
