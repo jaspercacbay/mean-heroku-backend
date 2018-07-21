@@ -17,8 +17,11 @@ var bluebird = require('bluebird');
 
 var db;
 
+/*
+console.log("start mongoclient");
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/todoapp", function (err, client) {
   if (err) {
+    console.log("error starting mongoclient");
     console.log(err);
     process.exit(1);
   }
@@ -32,7 +35,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
     var port = server.address().port;
     console.log("App now running on port", port);
   });
-});
+});*/
 
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
