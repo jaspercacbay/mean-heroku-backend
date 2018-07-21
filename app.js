@@ -4,46 +4,27 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongodb = require('mongodb');
-var ObjectID = mongodb.ObjectID;
 
-var TODO_COLLECTION = "todos";
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api.route');
 
+
 var bluebird = require('bluebird');
-
-var db;
-
-/*
-console.log("start mongoclient");
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/todoapp", function (err, client) {
-  if (err) {
-    console.log("error starting mongoclient");
-    console.log(err);
-    process.exit(1);
-  }
-
-  // Save database object from the callback for reuse.
-  db = client.db();
-  console.log("Database connection ready");
-
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
-});*/
-
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://tester1:tester1@ds145981.mlab.com:45981/heroku-mean-todoapp", { useNewUrlParser: true})
-.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`)})
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://tester1:tester1@ds145981.mlab.com:45981/heroku-mean-todoapp", 
+  { useNewUrlParser: true}
+)
+.then(() => { 
+  console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`);
+})
 .catch((err)=> { 
   console.log(err);
-  console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`)});
+  console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`);
+});
 
 
 var app = express();
@@ -59,9 +40,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 app.use(function(req, res, next) {
