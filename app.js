@@ -5,8 +5,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-console.log(process.env.MONGODB_URI);
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
@@ -14,8 +12,6 @@ else {
   process.env.MONGODB_URI = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_USER_PASS 
     + "@" + process.env.DB;
 }
-
-console.log(process.env.MONGODB_URI);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
