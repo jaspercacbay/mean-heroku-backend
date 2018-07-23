@@ -15,15 +15,15 @@ var bluebird = require('bluebird');
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://tester1:tester1@ds145981.mlab.com:45981/heroku-mean-todoapp", 
+  process.env.MONGODB_URI || "mongodb://" + ENV['DB_USER'] + ":" + ENV['DB_USER_PASS'] + "@ds145981.mlab.com:45981/heroku-mean-todoapp", 
   { useNewUrlParser: true}
 )
 .then(() => { 
-  console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`);
+  console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://***/**app`);
 })
 .catch((err)=> { 
   console.log(err);
-  console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/heroku-mean-todoapp`);
+  console.log(`Error Connecting to the Mongodb Database at ***`);
 });
 
 
