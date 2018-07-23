@@ -15,7 +15,7 @@ var bluebird = require('bluebird');
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://" + ENV['DB_USER'] + ":" + ENV['DB_USER_PASS'] + "@ds145981.mlab.com:45981/heroku-mean-todoapp", 
+  process.env.MONGODB_URI || "mongodb://" + process.env.DB_USER + ":" + process.env.DB_USER_PASS + "@ds145981.mlab.com:45981/heroku-mean-todoapp", 
   { useNewUrlParser: true}
 )
 .then(() => { 
