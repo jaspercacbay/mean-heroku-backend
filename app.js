@@ -5,6 +5,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+console.log(process.env.MONGODB_URI);
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+else {
+  process.env.MONGODB_URI = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_USER_PASS 
+    + "@ds145981.mlab.com:45981/heroku-mean-todoapp";
+}
+
+console.log(process.env.MONGODB_URI);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,7 +26,7 @@ var bluebird = require('bluebird');
 var mongoose = require('mongoose');
 mongoose.Promise = bluebird;
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://" + process.env.DB_USER + ":" + process.env.DB_USER_PASS + "@ds145981.mlab.com:45981/heroku-mean-todoapp", 
+  process.env.MONGODB_URI, 
   { useNewUrlParser: true}
 )
 .then(() => { 
