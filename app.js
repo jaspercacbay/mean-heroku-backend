@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 else {
   process.env.MONGODB_URI = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_USER_PASS 
-    + "@ds145981.mlab.com:45981/heroku-mean-todoapp";
+    + "@" + process.env.DB;
 }
 
 console.log(process.env.MONGODB_URI);
